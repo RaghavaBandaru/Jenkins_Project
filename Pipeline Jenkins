@@ -1,0 +1,48 @@
+# Implemented Groove script in the pipeline process
+
+pipeline {
+    agent {
+        label "Buildserver"
+    }
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven3.9.5"
+    }
+    
+
+    stages {
+        stage('Prepare Env') {
+            steps {
+                echo "Prepare Env"
+                git branch: 'main', credentialsId: 'gitlab', url: 'https://gitlab.com/raghavabandaru854/student-app.git'
+            }
+        }
+        stage('compile source code') {
+            tools {
+                // Install the Maven version configured as "M3" and add it to the path.
+                maven "maven3.9.5"
+            }
+            steps {                
+                echo "compile source code"
+                sh 'mvn clean compile'
+            }
+        }
+        stage('pre-deployment-tests') {
+            steps {
+                echo 'pre-deployment-tests'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'package'
+            }
+        }
+        stage('Deploy_application') {
+            steps {
+                echo 'Deploy_application'
+            }
+        }
+    }
+}
+

@@ -25,9 +25,10 @@ Job-1:
 
 Buid Steps:
 
-    - Src Code
+   - Src Code
 
-    - mvn clean compile
+   - mvn clean compile
+  
 
 Job-2:
 
@@ -45,7 +46,7 @@ Job-2:
 
   Post Build:
 
-      - Publishing Junit test Reports
+  - Publishing Junit test Reports
 
 Job-3: Packaging-Application
 
@@ -53,11 +54,11 @@ Job-3: Packaging-Application
 
   Build Steps:
 
-    - mvn clean package -DskipTests
+   - mvn clean package -DskipTests
 
   Post Build:
 
-    - Publishing Artifact
+   - Publishing Artifact
 
 Job-4: Deployment-Application
 

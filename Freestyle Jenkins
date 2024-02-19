@@ -2,17 +2,17 @@
 
 Plugins:
 
-Build Pipeline
-
-Copy artifacts
-
-Clone workspace SCM
+  Build Pipeline
+  
+  Copy artifacts
+  
+  Clone workspace SCM
 
 Tools:
 
-Maven
-
-Java 1.8
+  Maven
+  
+  Java 1.8
 
 Below is the workflow(Jobs)
 
@@ -20,46 +20,48 @@ Job-1:
 
 Pre-requisite:
 
-Tool: maven
+  Tool: maven
 Buid Steps:
 
-Src Code
+  Src Code
 
-mvn clean compile
+  mvn clean compile
 
 Job-2:
 
 Pre-Deployment-Testing
 
-Tool: maven
+  Tool: maven
 
 Build Steps:
 
-java 1.8
+  java 1.8
+  
+  mvn clean test
 
-mvn clean test
-
-java 11
+  java 11
 
 Post Build:
 
-Publishing Junit test Reports
+  Publishing Junit test Reports
+
 Job-3: Packaging-Application
 
 Tool: maven
 
 Build Steps:
 
-mvn clean package -DskipTests
+  mvn clean package -DskipTests
+
 Post Build:
 
-Publishing Artifact
+  Publishing Artifact
 Job-4: Deployment-Application
 
 Tool: Shell Commands
 
 Build Steps:
 
-Copy Artifact
-
-copy .war student.war
+  Copy Artifact
+  
+  copy .war student.war

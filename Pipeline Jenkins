@@ -1,5 +1,3 @@
-# Implemented Groove script in the pipeline process
-
 pipeline {
     agent {
         label "Buildserver"
@@ -31,16 +29,41 @@ pipeline {
         stage('pre-deployment-tests') {
             steps {
                 echo 'pre-deployment-tests'
+                sh 'java -version'
+                
+                // switch to java 1.8
+                sh 'echo 2 | sudo alternatives --config java'
+                
+                // maven test 
+                sh 'mvn clean test'
+                
+                // switch to java 11
+                sh 'echo 1 | sudo alternatives --config java'
+                sh 'java -version'
+            }
+            post {
+                success {
+                junit stdioRetention: '', testResults: 'target/surefire-reports/*.xml'
+                }
             }
         }
         stage('package') {
             steps {
                 echo 'package'
+
+                sh 'mvn clean package -DskipTests'
+            }
+            post {
+                success {
+                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false
+                }
             }
         }
         stage('Deploy_application') {
             steps {
                 echo 'Deploy_application'
+                
+                sh 'sudo cp target/*.war /opt/appserver/webapps/student.war'
             }
         }
     }

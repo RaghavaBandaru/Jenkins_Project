@@ -1,0 +1,63 @@
+Master mchine 
+
+ 
+
+    1  sudo hostnamectl set-hostname jenkins-master
+    2  exit
+    3  sudo yum update -y
+    4  java -version
+    5  sudo yum search java
+    6  sudo yum install -y java-11-openjdk-devel.x86_64
+    7  java -version
+   12  sudo yum install wget
+   13    sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+   14    sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+   15    sudo   yum install jenkins
+   17  sudo systemctl start jenkins
+   18  sudo systemctl status jenkins
+   19  sudo systemctl enable jenkins
+   20  ps -ef grep | jenkins
+   21  netstat -nltp
+   22   sudo apt update
+   23  sudo yum install net-tools
+   24  netstat -nltp
+   25  ps -ef grep | jenkins
+   26  ps -ef | grep jenkins
+   27  clear
+   28  sudo systemctl stop firewalld.service
+   29  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+   30  clear
+   31  history
+
+sudo hostnamectl set-hostname jenkins-master
+    2  exit
+    3  ssh vagrant@192.168.33.12
+    4  ll -a
+    5  ll -a .ssh/
+    6  ssh -keygen -t RSA
+    7  ssh-keygen -t RSA
+    8  ll -a .ssh/
+    9  ssh-copy-id vagrant@192.168.33.12
+   10  ssh vagrant@192.168.33.12
+   11  history
+
+
+slave machine
+
+hostname -I
+    2  sudo hostnamectl set-hostname jenkins-slave
+    3  exit
+    4  env
+    5  ping 192.168.33.12
+    6  hostname -I
+    7  sudo vi /etc/ssh/sshd_config
+    8  sudo systemctl restart sshd
+    9  sudo ssh vagrant@192.168.33.10
+   10   sudo systemctl restart sshd
+   11  sudo ssh vagrant@192.168.33.10
+   12  ll -a .ssh/
+   13  cat .ssh/
+   14  cat .ssh/authorized_keys
+   15  history
+   29  cat .ssh/authorized_keys
+   30  ll /etc/ssh/sshd_config

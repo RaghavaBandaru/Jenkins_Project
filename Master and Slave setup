@@ -1,7 +1,5 @@
 Master mchine 
 
- 
-
     1  sudo hostnamectl set-hostname jenkins-master
     2  exit
     3  sudo yum update -y
